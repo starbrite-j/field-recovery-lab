@@ -8,8 +8,9 @@ are already installed. This script performs no package installation or update,
 and leaves tracked source/configuration files alone. It compiles notes modules
 outside the repository's default library targets in their dependency order.
 Logs and a machine-readable report are written under notes/verification/.
-The report deliberately distinguishes conditional field restoration from the
-still-unproved automatic identification of calibration from E observations.
+The report distinguishes the proved tail calibration with retained core
+metadata from the still-unproved automatic recovery of an unknown core and
+calibration from E alone. Numerical observation recovery remains separate.
 """
 
 from __future__ import annotations
@@ -28,7 +29,8 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'notes' / 'verification'
-MODULES = ['AxialFromAngular', 'ProfileReverseTrace', 'FullFieldRecovery', 'SourceFieldRecovery', 'RecoveryAxiomAudit']
+MODULES = ['AxialFromAngular', 'ProfileReverseTrace', 'FullFieldRecovery',
+           'SourceFieldRecovery', 'ObservedFieldRecovery', 'RecoveryAxiomAudit']
 ALLOWED_AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
 
 
@@ -83,7 +85,11 @@ def main() -> int:
         'toolchain': (ROOT / 'lean-toolchain').read_text().strip(),
         'lake_manifest_sha256': digest(ROOT / 'lake-manifest.json'),
         'proof_files_sha256': {f'notes/{name}.lean': digest(ROOT / 'notes' / f'{name}.lean') for name in MODULES},
+        # Legacy flag: the original FullFieldRecovery.EOnly reader, including
+        # automatic core identification, still has unproved matching hypotheses.
         'calibration_identification_formally_proved': False,
+        'calibration_identification_from_E_alone_formally_proved': False,
+        'calibration_identification_with_retained_core_formally_proved': False,
         'actual_observed_E_dataset_recovered': False,
         'steps': [],
     }
@@ -113,8 +119,8 @@ def main() -> int:
             ])
         audit_text = (OUTPUT / 'RecoveryAxiomAudit.log').read_text()
         blocks = re.findall(r'depends on axioms:\s*\[([^\]]*)\]', audit_text)
-        if len(blocks) != 13:
-            raise RuntimeError(f'Expected thirteen axiom reports; found {len(blocks)}. Inspect the saved audit.')
+        if len(blocks) != 23:
+            raise RuntimeError(f'Expected twenty-three axiom reports; found {len(blocks)}. Inspect the saved audit.')
         used = {part.strip() for block in blocks for part in block.split(',') if part.strip()}
         report['audited_theorems'] = len(blocks)
         report['axioms_used'] = sorted(used)
@@ -125,7 +131,11 @@ def main() -> int:
             raise RuntimeError('The dependency lock changed during verification.')
         report['status'] = 'passed'
         report['compiled_modules'] = MODULES
-        report['compiled_restoration_requires_calibration'] = True
+        report['legacy_readers_require_supplied_calibration'] = True
+        report['assembled_reader_requires_supplied_calibration'] = False
+        report['assembled_reader_requires_retained_core'] = True
+        report['calibration_identification_with_retained_core_formally_proved'] = True
+        report['calibration_identification_scope'] = 'Complete exact assembled E with retained core metadata; height and scale read from the eta=1 tail. FullFieldRecovery.EOnly automatic core identification remains unproved.'
         report['source_profile_identified'] = 'PreparedOutgoing.prepared.profile'
         report['assembled_outgoing_prefix_completion_proved'] = True
         report['matching_source_instance_recovery_proved'] = True
@@ -139,7 +149,9 @@ def main() -> int:
         write_report(report)
         archive = OUTPUT / 'runs' / report['started_utc'].replace(':', '-')
         archive.mkdir(parents=True, exist_ok=True)
-        for path in OUTPUT.iterdir():
+        shutil.copy2(OUTPUT / 'proof_verification.json', archive / 'proof_verification.json')
+        for step in report['steps']:
+            path = ROOT / step['log']
             if path.is_file():
                 shutil.copy2(path, archive / path.name)
     print(f'Verification {report["status"]}: {OUTPUT / "proof_verification.json"}', flush=True)

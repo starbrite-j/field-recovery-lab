@@ -5,17 +5,24 @@
   "upstream_license": "Apache-2.0",
   "research_directory": "notes/",
   "latest_saved_proof_report": "notes/verification/proof_verification.json",
-  "latest_saved_proof_run": "2026-11-11T15:24:44.395704+00:00",
+  "latest_saved_proof_run": "2026-11-11T16:20:11.574903+00:00",
   "latest_saved_proof_status": "passed",
   "proof_files_sha256": {
     "notes/AxialFromAngular.lean": "7b0c54cc3a46febcfd994be0287e39f8abf36cf68fb90a17f2e7a1227b6da34d",
     "notes/ProfileReverseTrace.lean": "0164d1dbcf1ef256a28874cd5c5b55ef0b427382dfb8e498621e5e1a5bb94847",
     "notes/FullFieldRecovery.lean": "8e8bfc9ebf745eb8b850164b3cb3a59abaa676f2a6ce5e76861d0a2f41865a58",
     "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
-    "notes/RecoveryAxiomAudit.lean": "c753da9ea0c84c0492191c0e0df52987858fb2c046f8a340f4e76742d6b815e5"
+    "notes/ObservedFieldRecovery.lean": "f143ebe39d207f9f1cda918bef6a74de48ca721525a2754afe2f3d168e02aa7e",
+    "notes/RecoveryAxiomAudit.lean": "cc56b80f2acf0c0d1e6f950179faf6d04ba3dbaf05ef91cc0a06cf5f214738f4"
   },
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
   "scope": "Private downstream recovery research; the imported upstream formalizations are preserved with their history. The saved checks cover the research modules and required dependencies, not an independent audit of every upstream result.",
   "calibration_identification_formally_proved": false,
-  "actual_observed_E_dataset_recovered": false
+  "actual_observed_E_dataset_recovered": false,
+  "audited_theorems": 23,
+  "calibration_identification_with_retained_core_formally_proved": true,
+  "calibration_identification_from_E_alone_formally_proved": false,
+  "assembled_reader_requires_supplied_calibration": false,
+  "assembled_reader_requires_retained_core": true,
+  "calibration_identification_scope": "Complete exact assembled E with retained core metadata; height and scale read from the eta=1 tail. FullFieldRecovery.EOnly automatic core identification remains unproved."
 }

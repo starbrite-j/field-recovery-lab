@@ -12,18 +12,37 @@ research archive, without a claim of OpenAI review or endorsement.
 
 ## What the current work establishes
 
-The source profile is `PreparedOutgoing.prepared.profile`. The recovery proofs
-connect the assembled outgoing angular field to that same profile's original
-`E` and `U`, given the required core and matching calibration. They complete the
-known outgoing prefix below the heat join before applying the inverse.
+The source profile is `PreparedOutgoing.prepared.profile`. Given its retained
+core schedule (`P`, `m`, `lam`, and `wait`) and the complete exact assembled
+angular field, the new reader proves recovery of that same profile's original
+`E` and `U`. A matching calibration is no longer a supplied input to this route.
+
+The reader uses the unheated boundary slice `eta = 1`. Its eventual logarithmic
+slope determines height `h`; with the retained core, the tail's amplitude
+determines a unique radial scale. The reader derives the patch and switch
+radii, completes the known outgoing prefix below the heat join, and applies
+the heat/patch inverse followed by the source energy identity for `U`.
+
+```mermaid
+flowchart LR
+  E["Exact assembled E"] --> H["Tail slope: height"]
+  H --> D["Tail data"]
+  C["Retained core schedule"] --> D
+  D --> R["Tail amplitude: scale"]
+  E --> R
+  R --> K["Patch and switch calibration"]
+  K --> F["Complete prefix and restore original E"]
+  E --> F
+  F --> U["Energy identity: original U"]
+```
 
 The compiled source-instance theorem is
-`NavierStokes.SourceFieldRecovery.exists_matched_recovery`. Agreement of the
+`NavierStokes.ObservedFieldRecovery.exists_matched_observed_recovery`. Agreement of the
 reconstructed later `U` with the assembled `W.U` is proved on
 `X > heatJoin`, with `eta` in `[-1, 1]`. The proof does not extend that agreement
 through the axis/heat join.
 
-The saved successful run compiled all five research modules and checked 13
+The saved successful run compiled all six research modules and checked 23
 theorems for axioms. It reported only `propext`, `Classical.choice`, and
 `Quot.sound`, with no `sorryAx`. These checks cover the research modules and their
 required source dependencies; they are not an independent audit of every
@@ -33,11 +52,12 @@ upstream result.
 
 | File | Purpose |
 | --- | --- |
+| [ObservedFieldRecovery.lean](notes/ObservedFieldRecovery.lean) | Prove tail-based height and scale calibration, then recover E/U with retained core metadata. |
 | [SourceFieldRecovery.lean](notes/SourceFieldRecovery.lean) | Connect the recovery to the actual prepared source profile and assembled fields. |
 | [FullFieldRecovery.lean](notes/FullFieldRecovery.lean) | Conditional inverse transformations, calibration readers, and original/later field round trips. |
 | [AxialFromAngular.lean](notes/AxialFromAngular.lean) | Recover axial `U` from angular `E` and the core using the source energy identity. |
 | [ProfileReverseTrace.lean](notes/ProfileReverseTrace.lean) | Historical source map, transformation trace, earlier inverse proofs, and research notes. |
-| [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 13 explicit axiom checks. |
+| [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 23 explicit axiom checks. |
 | [proof_verification.json](notes/verification/proof_verification.json) | Latest saved pass, source revision, proof hashes, toolchain, dependency revisions, and exit codes. |
 | [verification/runs](notes/verification/runs) | Historical compiler runs, including failed attempts. |
 | [PROVENANCE.json](PROVENANCE.json) | Pinned upstream revision and the saved verification snapshot. |
@@ -45,12 +65,16 @@ upstream result.
 The original successful run was saved on 2026-11-11. Its absolute paths describe
 the original local checkout. Each run's JSON status and step list identify what
 actually ran in that attempt; an older log copied into a failed run's directory
-is not evidence that its step ran again.
+is not evidence that its step ran again. The updated verifier archives only logs
+for steps attempted in that run. Direct development compiler outputs are in
+`notes/verification/development/`.
 
 ## Limits that remain
 
-- Automatic identification of the correct calibration from observed `E` is still
-  unproved. The recovery theorems retain explicit matching assumptions.
+- The new route requires the original core schedule as retained metadata. Its
+  height, radial scale, patch radius, and switch radius are proved to match the
+  source from the exact assembled field. Automatic recovery of an unknown core
+  by the older `FullFieldRecovery.EOnly` reader remains unproved.
 - The Lean construction uses exact real fields and is noncomputable. It does not
   provide a general recovery program for finite, noisy, or incomplete samples.
 - No actual observed `E` dataset has been recovered in this archive.
@@ -74,7 +98,7 @@ lake exe cache get
 python3 notes/verify_recovery.py
 ```
 
-The verification script builds the necessary source modules, compiles the five
+The verification script builds the necessary source modules, compiles the six
 research modules in order, checks dependency revisions and axiom output, and
 writes fresh logs under `notes/verification/`, including a dated run directory.
 It records the current checkout's HEAD as `source_revision`; the historical

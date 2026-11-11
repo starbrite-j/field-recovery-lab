@@ -1,0 +1,8 @@
+Command: lake env lean -o .lake/build/lib/lean/notes/ObservedFieldRecovery.olean notes/ObservedFieldRecovery.lean
+Exit code: 1
+notes/ObservedFieldRecovery.lean:65:5: error: Type mismatch
+  this
+has type
+  1 ∈ HeatedOutgoing.parameterDomain
+but is expected to have type
+  ?m.79.2 ∈ HeatedOutgoing.parameterDomain
