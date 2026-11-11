@@ -50,7 +50,7 @@ reconstructed later `U` with the assembled `W.U` is proved on
 `X > heatJoin`, with `eta` in `[-1, 1]`. The proof does not extend that agreement
 through the axis/heat join.
 
-The saved successful run compiled all seven research modules and checked 39
+The saved successful run compiled all nine research modules and checked 45
 theorems for axioms. It reported only `propext`, `Classical.choice`, and
 `Quot.sound`, with no `sorryAx`. These checks cover the research modules and their
 required source dependencies; they are not an independent audit of every
@@ -61,12 +61,15 @@ upstream result.
 | File | Purpose |
 | --- | --- |
 | [CoreFieldRecovery.lean](notes/CoreFieldRecovery.lean) | Prove observable core markers and compose E/U recovery without supplied core parameters or calibration. |
+| [OriginalFieldReproduction.lean](notes/OriginalFieldReproduction.lean) | Instantiate the inverse and prove equality with the named original; expose exact initial-region formulas. |
+| [prefix_samples.json](notes/original_field/prefix_samples.json) | 45 exact initial-region values of `U` and `E/P`, with `P` left unassigned. |
+| [PrefixSampleCertificate.lean](notes/PrefixSampleCertificate.lean) | Independently check every exported sample against the symbolic reproduced original. |
 | [ObservedFieldRecovery.lean](notes/ObservedFieldRecovery.lean) | Prove tail-based height and scale calibration, then recover E/U with retained core metadata. |
 | [SourceFieldRecovery.lean](notes/SourceFieldRecovery.lean) | Connect the recovery to the actual prepared source profile and assembled fields. |
 | [FullFieldRecovery.lean](notes/FullFieldRecovery.lean) | Conditional inverse transformations, calibration readers, and original/later field round trips. |
 | [AxialFromAngular.lean](notes/AxialFromAngular.lean) | Recover axial `U` from angular `E` and the core using the source energy identity. |
 | [ProfileReverseTrace.lean](notes/ProfileReverseTrace.lean) | Historical source map, transformation trace, earlier inverse proofs, and research notes. |
-| [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 39 explicit axiom checks. |
+| [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 45 explicit axiom checks. |
 | [proof_verification.json](notes/verification/proof_verification.json) | Latest saved pass, source revision, proof hashes, toolchain, dependency revisions, and exit codes. |
 | [verification/runs](notes/verification/runs) | Historical compiler runs, including failed attempts. |
 | [check_flatten_markers.py](notes/check_flatten_markers.py) | Audit rounded boundary predicates and estimate a flattening endpoint from interior log-ratio markers. |
@@ -79,6 +82,44 @@ actually ran in that attempt; an older log copied into a failed run's directory
 is not evidence that its step ran again. The updated verifier archives only logs
 for steps attempted in that run. Direct development compiler outputs are in
 `notes/verification/development/`.
+
+## Reproduction of the named original
+
+`OriginalFieldReproduction.reproducedE` and `reproducedU` instantiate the inverse.
+Lean proves they equal `PreparedOutgoing.prepared.profile.E` and `.U` throughout
+the positive radial domain with `eta` in `[-1,1]`. The matching observation is
+constructed from that same source through its existence theorem. This is a
+symbolic round trip; no independent observed dataset was supplied.
+
+The named original is `Classical.choice exists_prepared`. Its full fields remain
+noncomputable, and the source does not supply a numerical realization of this
+particular choice: its core values, height, reset coefficient functions, and
+other chosen construction data. The reconstruction does not assign substitute
+values or claim to export the complete numerical field.
+
+The initial region is explicit. For `0 < x <= 1`:
+
+```text
+U(x, eta) = 4 eta
+E(x, eta) = P x^(1/10) / (1 + eta^2), with P = original.data.core.P >= 2
+```
+
+The export takes `x = t^10`, using five positive rational `t` values and nine
+rational `eta` values. This gives 45 exact rational values of `U` and `E/P`.
+For example, `x=1, eta=1/2` gives `U=2` and `E=(4/5)P`. Large numerators and
+denominators are stored as decimal strings to preserve their exactness in
+JavaScript readers. The certificate checks the radii, domain, amplitudes, and
+normalized amplitudes against the Lean source theorem. These samples cover
+the initial region only; they do not sample the later reset or heated region.
+
+Regenerate or check the saved export with Python's standard library, then run
+the full Lean verification:
+
+```sh
+python3 notes/reproduce_original_prefix.py
+python3 notes/reproduce_original_prefix.py --check
+python3 notes/verify_recovery.py
+```
 
 ## Limits that remain
 
@@ -113,8 +154,9 @@ lake exe cache get
 python3 notes/verify_recovery.py
 ```
 
-The verification script builds the necessary source modules, compiles the seven
-research modules in order, checks dependency revisions and axiom output, and
+The verification script builds the necessary source modules, compiles the nine
+research modules in order, checks the generated prefix export, dependency
+revisions, source hashes, and axiom output, and
 writes fresh logs under `notes/verification/`, including a dated run directory.
 It records the current checkout's HEAD as `source_revision`; the historical
 upstream base is also recorded separately in `PROVENANCE.json`.

@@ -1,0 +1,318 @@
+{
+  "status": "passed",
+  "started_utc": "2026-11-11T22:00:59.189596+00:00",
+  "source_revision": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+  "toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
+  "proof_files_sha256": {
+    "notes/AxialFromAngular.lean": "7b0c54cc3a46febcfd994be0287e39f8abf36cf68fb90a17f2e7a1227b6da34d",
+    "notes/ProfileReverseTrace.lean": "0164d1dbcf1ef256a28874cd5c5b55ef0b427382dfb8e498621e5e1a5bb94847",
+    "notes/FullFieldRecovery.lean": "8e8bfc9ebf745eb8b850164b3cb3a59abaa676f2a6ce5e76861d0a2f41865a58",
+    "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
+    "notes/ObservedFieldRecovery.lean": "f143ebe39d207f9f1cda918bef6a74de48ca721525a2754afe2f3d168e02aa7e",
+    "notes/CoreFieldRecovery.lean": "f4cc8a67f818ac72db863ff4a2eb58e0830998d97197a928483615aed3e6efe4",
+    "notes/OriginalFieldReproduction.lean": "0d937b4e6292de257d6857a7c56dfdaab9aaee486029375a4ce45f425c64376c",
+    "notes/PrefixSampleCertificate.lean": "22dae36913db345288f44c03a956b4f697e2017902eee6dea3589b6632052f5a",
+    "notes/RecoveryAxiomAudit.lean": "6cfee32a695e4f5ed6842f9700bb1f5f16db938fb0cf9fa2f9f681822b271a18"
+  },
+  "calibration_identification_formally_proved": true,
+  "calibration_identification_from_E_alone_formally_proved": true,
+  "calibration_identification_with_retained_core_formally_proved": true,
+  "core_identification_from_assembled_E_formally_proved": true,
+  "legacy_EOnly_marker_identification_formally_proved": false,
+  "actual_observed_E_dataset_recovered": false,
+  "full_symbolic_original_reproduction_proved": true,
+  "full_numerical_original_reproduced": false,
+  "exact_normalized_prefix_samples_verified": 45,
+  "steps": [
+    {
+      "label": "prefix_export_consistency",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "notes/reproduce_original_prefix.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.037,
+      "log": "notes/verification/prefix_export_consistency.log"
+    },
+    {
+      "label": "lean_version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.032,
+      "log": "notes/verification/lean_version.log"
+    },
+    {
+      "label": "lake_version",
+      "command": [
+        "lake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.031,
+      "log": "notes/verification/lake_version.log"
+    },
+    {
+      "label": "source_dependencies",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "+NavierStokes.ExtendedHeatedOutgoing:olean",
+        "+NavierStokes.HeatSwitchHistoryDerivatives:olean",
+        "+NavierStokes.PreparedOutgoing:olean"
+      ],
+      "exit_code": 0,
+      "seconds": 2.52,
+      "log": "notes/verification/source_dependencies.log"
+    },
+    {
+      "label": "AxialFromAngular",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.ilean",
+        "notes/AxialFromAngular.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 4.847,
+      "log": "notes/verification/AxialFromAngular.log"
+    },
+    {
+      "label": "ProfileReverseTrace",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ProfileReverseTrace.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ProfileReverseTrace.ilean",
+        "notes/ProfileReverseTrace.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.15,
+      "log": "notes/verification/ProfileReverseTrace.log"
+    },
+    {
+      "label": "FullFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/FullFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/FullFieldRecovery.ilean",
+        "notes/FullFieldRecovery.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.141,
+      "log": "notes/verification/FullFieldRecovery.log"
+    },
+    {
+      "label": "SourceFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/SourceFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/SourceFieldRecovery.ilean",
+        "notes/SourceFieldRecovery.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.045,
+      "log": "notes/verification/SourceFieldRecovery.log"
+    },
+    {
+      "label": "ObservedFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ObservedFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ObservedFieldRecovery.ilean",
+        "notes/ObservedFieldRecovery.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.367,
+      "log": "notes/verification/ObservedFieldRecovery.log"
+    },
+    {
+      "label": "CoreFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/CoreFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/CoreFieldRecovery.ilean",
+        "notes/CoreFieldRecovery.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.875,
+      "log": "notes/verification/CoreFieldRecovery.log"
+    },
+    {
+      "label": "OriginalFieldReproduction",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/OriginalFieldReproduction.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/OriginalFieldReproduction.ilean",
+        "notes/OriginalFieldReproduction.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.166,
+      "log": "notes/verification/OriginalFieldReproduction.log"
+    },
+    {
+      "label": "PrefixSampleCertificate",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/PrefixSampleCertificate.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/PrefixSampleCertificate.ilean",
+        "notes/PrefixSampleCertificate.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.135,
+      "log": "notes/verification/PrefixSampleCertificate.log"
+    },
+    {
+      "label": "RecoveryAxiomAudit",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/RecoveryAxiomAudit.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/RecoveryAxiomAudit.ilean",
+        "notes/RecoveryAxiomAudit.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.06,
+      "log": "notes/verification/RecoveryAxiomAudit.log"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Comparator",
+      "locked_revision": "19e111e2141cf333c7daff0f64c5f24acc91dd2e",
+      "actual_revision": "19e111e2141cf333c7daff0f64c5f24acc91dd2e",
+      "matches_lock": true
+    },
+    {
+      "name": "mathlib",
+      "locked_revision": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+      "actual_revision": "85e3a25e006c35636f0e53b0e9296caca2685bc0",
+      "matches_lock": true
+    },
+    {
+      "name": "lean4export",
+      "locked_revision": "cacf989bd75f608700820f6afc595f32e7a99a4d",
+      "actual_revision": "cacf989bd75f608700820f6afc595f32e7a99a4d",
+      "matches_lock": true
+    },
+    {
+      "name": "plausible",
+      "locked_revision": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+      "actual_revision": "d9598f07b1bc701f1e3aae163d2681c1fd978793",
+      "matches_lock": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "locked_revision": "ba67e212be1197b84c1f1f6299488a10a3002713",
+      "actual_revision": "ba67e212be1197b84c1f1f6299488a10a3002713",
+      "matches_lock": true
+    },
+    {
+      "name": "importGraph",
+      "locked_revision": "d8823026ac7ef130c253089d95685f9877b95323",
+      "actual_revision": "d8823026ac7ef130c253089d95685f9877b95323",
+      "matches_lock": true
+    },
+    {
+      "name": "proofwidgets",
+      "locked_revision": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+      "actual_revision": "a8acbfd87375ff4abe14ce09db5b7664d383bc7f",
+      "matches_lock": true
+    },
+    {
+      "name": "aesop",
+      "locked_revision": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+      "actual_revision": "18889deb9e83ea7420ef51c160d6f88552e744e3",
+      "matches_lock": true
+    },
+    {
+      "name": "Qq",
+      "locked_revision": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+      "actual_revision": "507746ab8f4b643ccdacb2ec4cdb5853fa9f8ab3",
+      "matches_lock": true
+    },
+    {
+      "name": "batteries",
+      "locked_revision": "d54dddc581e08be364c278052863524bff7a99a9",
+      "actual_revision": "d54dddc581e08be364c278052863524bff7a99a9",
+      "matches_lock": true
+    },
+    {
+      "name": "Cli",
+      "locked_revision": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+      "actual_revision": "ab3a82db9fea14cf0fd7f5a2de650f4b534640af",
+      "matches_lock": true
+    }
+  ],
+  "prefix_export_sha256": "7cbcf135b647072fb7aeb03346421fb5932c8abb7f4f51ca021be19d8c67463c",
+  "prefix_generator_sha256": "c9c94fb209c2491daad17b4467f39af645c3f691a55be79f1ac5474e06606adb",
+  "audited_theorems": 45,
+  "axioms_used": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "unexpected_axioms": [],
+  "compiled_modules": [
+    "AxialFromAngular",
+    "ProfileReverseTrace",
+    "FullFieldRecovery",
+    "SourceFieldRecovery",
+    "ObservedFieldRecovery",
+    "CoreFieldRecovery",
+    "OriginalFieldReproduction",
+    "PrefixSampleCertificate",
+    "RecoveryAxiomAudit"
+  ],
+  "legacy_readers_require_supplied_calibration": true,
+  "assembled_reader_requires_supplied_calibration": false,
+  "assembled_reader_requires_retained_core": false,
+  "calibration_identification_scope": "CoreFieldRecovery: complete exact assembled E in the NominalProfile source family. Observable endpoint, rate, patch, scale, ramp, P, m, wait markers recover the core; the boundary tail supplies h and completes calibration. No supplied core or calibration. Legacy FullFieldRecovery.EOnly markers remain unproved.",
+  "finite_noisy_observation_recovery_proved": false,
+  "source_profile_identified": "PreparedOutgoing.prepared.profile",
+  "assembled_outgoing_prefix_completion_proved": true,
+  "matching_source_instance_recovery_proved": true,
+  "symbolic_observation_constructed_from_same_source": true,
+  "prefix_sample_scope": "0 < x <= 1, eta in [-1,1]; exact U and E/P, with source amplitude P unassigned. All samples checked against the symbolic reproduced original by Lean.",
+  "later_assembled_U_agreement_region": "X > heatJoin, eta in [-1,1]",
+  "finished_utc": "2026-11-11T22:01:49.703510+00:00"
+}

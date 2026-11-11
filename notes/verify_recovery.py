@@ -31,7 +31,8 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'notes' / 'verification'
 MODULES = ['AxialFromAngular', 'ProfileReverseTrace', 'FullFieldRecovery',
-           'SourceFieldRecovery', 'ObservedFieldRecovery', 'CoreFieldRecovery', 'RecoveryAxiomAudit']
+           'SourceFieldRecovery', 'ObservedFieldRecovery', 'CoreFieldRecovery',
+           'OriginalFieldReproduction', 'PrefixSampleCertificate', 'RecoveryAxiomAudit']
 ALLOWED_AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
 
 
@@ -92,6 +93,9 @@ def main() -> int:
         'core_identification_from_assembled_E_formally_proved': False,
         'legacy_EOnly_marker_identification_formally_proved': False,
         'actual_observed_E_dataset_recovered': False,
+        'full_symbolic_original_reproduction_proved': False,
+        'full_numerical_original_reproduced': False,
+        'exact_normalized_prefix_samples_verified': 0,
         'steps': [],
     }
     write_report(report)
@@ -107,6 +111,11 @@ def main() -> int:
         report['dependencies'] = locked_dependencies
         if not all(package['matches_lock'] for package in locked_dependencies):
             raise RuntimeError('An installed dependency differs from its pinned revision.')
+        run_step(report, 'prefix_export_consistency', [
+            sys.executable, 'notes/reproduce_original_prefix.py', '--check',
+        ])
+        report['prefix_export_sha256'] = digest(ROOT / 'notes/original_field/prefix_samples.json')
+        report['prefix_generator_sha256'] = digest(ROOT / 'notes/reproduce_original_prefix.py')
         run_step(report, 'lean_version', ['lean', '--version'])
         run_step(report, 'lake_version', ['lake', '--version'])
         run_step(report, 'source_dependencies', [
@@ -120,8 +129,8 @@ def main() -> int:
             ])
         audit_text = (OUTPUT / 'RecoveryAxiomAudit.log').read_text()
         blocks = re.findall(r'depends on axioms:\s*\[([^\]]*)\]', audit_text)
-        if len(blocks) != 39:
-            raise RuntimeError(f'Expected thirty-nine axiom reports; found {len(blocks)}. Inspect the saved audit.')
+        if len(blocks) != 45:
+            raise RuntimeError(f'Expected forty-five axiom reports; found {len(blocks)}. Inspect the saved audit.')
         used = {part.strip() for block in blocks for part in block.split(',') if part.strip()}
         report['audited_theorems'] = len(blocks)
         report['axioms_used'] = sorted(used)
@@ -130,6 +139,12 @@ def main() -> int:
             raise RuntimeError(f'Unexpected proof dependencies: {report["unexpected_axioms"]}')
         if report['lake_manifest_sha256'] != digest(ROOT / 'lake-manifest.json'):
             raise RuntimeError('The dependency lock changed during verification.')
+        for relative, expected in report['proof_files_sha256'].items():
+            if digest(ROOT / relative) != expected:
+                raise RuntimeError(f'A proof changed during verification: {relative}')
+        if (digest(ROOT / 'notes/original_field/prefix_samples.json') != report['prefix_export_sha256']
+                or digest(ROOT / 'notes/reproduce_original_prefix.py') != report['prefix_generator_sha256']):
+            raise RuntimeError('The prefix exporter or its data changed during verification.')
         report['status'] = 'passed'
         report['compiled_modules'] = MODULES
         report['legacy_readers_require_supplied_calibration'] = True
@@ -144,6 +159,10 @@ def main() -> int:
         report['source_profile_identified'] = 'PreparedOutgoing.prepared.profile'
         report['assembled_outgoing_prefix_completion_proved'] = True
         report['matching_source_instance_recovery_proved'] = True
+        report['full_symbolic_original_reproduction_proved'] = True
+        report['symbolic_observation_constructed_from_same_source'] = True
+        report['exact_normalized_prefix_samples_verified'] = 45
+        report['prefix_sample_scope'] = '0 < x <= 1, eta in [-1,1]; exact U and E/P, with source amplitude P unassigned. All samples checked against the symbolic reproduced original by Lean.'
         report['later_assembled_U_agreement_region'] = 'X > heatJoin, eta in [-1,1]'
     except (OSError, RuntimeError, subprocess.CalledProcessError) as error:
         report['status'] = 'failed'

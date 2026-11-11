@@ -1,0 +1,63 @@
+'NavierStokes.AxialFromAngular.constantFromField_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.AxialFromAngular.UFromField_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.AxialFromAngular.UFromField_congr_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.restoreDilatedE_roundtrip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.restoreE_roundtrip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.originalUFromObservedE_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.FullFieldRecovery.laterUFromObservedE_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.FullFieldRecovery.EOnly.recoveredUDirect_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.ProfileReverseTrace.heated_to_scheduled_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverOriginalE_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverOriginalU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverLaterU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.exists_matched_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.heated_hasLogTail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.assembled_hasLogTail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.eventualSlopes_eq_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.ObservedFieldRecovery.assembled_readHeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.scaleCandidates_eq_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.ObservedFieldRecovery.readCalibration_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.recoveredE_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.recoveredU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.recoveredLaterU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.ObservedFieldRecovery.exists_matched_observed_recovery' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.CoreFieldRecovery.reset_relative_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.logE_ratio_after_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.endpointRadius_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readRate_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readPatchRadius_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readLogScale_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.secondRampStart_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readM_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readP_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readWait_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.decodedCore_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.readCalibration_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.recoveredE_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.recoveredU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.recoveredLaterU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.CoreFieldRecovery.exists_matched_core_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedU_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_prefix_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedU_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.PrefixSampleCertificate.all_samples' depends on axioms: [propext, Classical.choice, Quot.sound]

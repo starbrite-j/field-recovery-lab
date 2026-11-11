@@ -3,6 +3,8 @@ import notes.ProfileReverseTrace
 import notes.SourceFieldRecovery
 import notes.ObservedFieldRecovery
 import notes.CoreFieldRecovery
+import notes.OriginalFieldReproduction
+import notes.PrefixSampleCertificate
 
 /-!
 The output of these commands is saved by notes/verify_recovery.py. The audit
@@ -56,3 +58,10 @@ for complete exact assembled E. The older EOnly marker definitions are separate.
 #print axioms NavierStokes.CoreFieldRecovery.recoveredU_source
 #print axioms NavierStokes.CoreFieldRecovery.recoveredLaterU_source
 #print axioms NavierStokes.CoreFieldRecovery.exists_matched_core_recovery
+
+#print axioms NavierStokes.OriginalFieldReproduction.reproducedE_eq_original
+#print axioms NavierStokes.OriginalFieldReproduction.reproducedU_eq_original
+#print axioms NavierStokes.OriginalFieldReproduction.reproducedE_prefix
+#print axioms NavierStokes.OriginalFieldReproduction.reproducedE_prefix_normalized
+#print axioms NavierStokes.OriginalFieldReproduction.reproducedU_prefix
+#print axioms NavierStokes.PrefixSampleCertificate.all_samples

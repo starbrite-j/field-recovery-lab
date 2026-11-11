@@ -5,7 +5,7 @@
   "upstream_license": "Apache-2.0",
   "research_directory": "notes/",
   "latest_saved_proof_report": "notes/verification/proof_verification.json",
-  "latest_saved_proof_run": "2026-11-11T16:38:53.699973+00:00",
+  "latest_saved_proof_run": "2026-11-11T22:02:08.096257+00:00",
   "latest_saved_proof_status": "passed",
   "proof_files_sha256": {
     "notes/AxialFromAngular.lean": "7b0c54cc3a46febcfd994be0287e39f8abf36cf68fb90a17f2e7a1227b6da34d",
@@ -14,13 +14,15 @@
     "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
     "notes/ObservedFieldRecovery.lean": "f143ebe39d207f9f1cda918bef6a74de48ca721525a2754afe2f3d168e02aa7e",
     "notes/CoreFieldRecovery.lean": "f4cc8a67f818ac72db863ff4a2eb58e0830998d97197a928483615aed3e6efe4",
-    "notes/RecoveryAxiomAudit.lean": "ffccb2c1cd023311a0440813a86dc7675b4efd0067505e0224b4734e19cbefa7"
+    "notes/OriginalFieldReproduction.lean": "c1770434c158367e594ddf947f02f832725ef259a25481b780602a2e29fd63be",
+    "notes/PrefixSampleCertificate.lean": "22dae36913db345288f44c03a956b4f697e2017902eee6dea3589b6632052f5a",
+    "notes/RecoveryAxiomAudit.lean": "6cfee32a695e4f5ed6842f9700bb1f5f16db938fb0cf9fa2f9f681822b271a18"
   },
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
   "scope": "Private downstream recovery research; the imported upstream formalizations are preserved with their history. The saved checks cover the research modules and required dependencies, not an independent audit of every upstream result.",
   "calibration_identification_formally_proved": true,
   "actual_observed_E_dataset_recovered": false,
-  "audited_theorems": 39,
+  "audited_theorems": 45,
   "calibration_identification_with_retained_core_formally_proved": true,
   "calibration_identification_from_E_alone_formally_proved": true,
   "assembled_reader_requires_supplied_calibration": false,
@@ -34,5 +36,15 @@
   "flatten_marker_rejection_cases": 6,
   "flatten_marker_script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658",
   "numerical_cli_verification": "notes/verification/numerical_cli_verification.json",
-  "numerical_source_Profile_certified": false
+  "numerical_source_Profile_certified": false,
+  "compiled_research_modules": 9,
+  "full_symbolic_original_reproduction_proved": true,
+  "full_numerical_original_reproduced": false,
+  "symbolic_observation_constructed_from_same_source": true,
+  "exact_normalized_prefix_samples_verified": 45,
+  "prefix_export": "notes/original_field/prefix_samples.json",
+  "prefix_export_sha256": "7cbcf135b647072fb7aeb03346421fb5932c8abb7f4f51ca021be19d8c67463c",
+  "prefix_generator_sha256": "c9c94fb209c2491daad17b4467f39af645c3f691a55be79f1ac5474e06606adb",
+  "prefix_certificate": "notes/PrefixSampleCertificate.lean",
+  "prefix_sample_scope": "0 < x <= 1, eta in [-1,1]; exact U and E/P, with source amplitude P unassigned. All samples checked against the symbolic reproduced original by Lean."
 }

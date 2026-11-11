@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "started_utc": "2026-11-11T16:38:53.699973+00:00",
+  "started_utc": "2026-11-11T22:02:08.096257+00:00",
   "source_revision": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
   "toolchain": "leanprover/lean4:v4.34.0-rc2",
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
@@ -11,7 +11,9 @@
     "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
     "notes/ObservedFieldRecovery.lean": "f143ebe39d207f9f1cda918bef6a74de48ca721525a2754afe2f3d168e02aa7e",
     "notes/CoreFieldRecovery.lean": "f4cc8a67f818ac72db863ff4a2eb58e0830998d97197a928483615aed3e6efe4",
-    "notes/RecoveryAxiomAudit.lean": "ffccb2c1cd023311a0440813a86dc7675b4efd0067505e0224b4734e19cbefa7"
+    "notes/OriginalFieldReproduction.lean": "c1770434c158367e594ddf947f02f832725ef259a25481b780602a2e29fd63be",
+    "notes/PrefixSampleCertificate.lean": "22dae36913db345288f44c03a956b4f697e2017902eee6dea3589b6632052f5a",
+    "notes/RecoveryAxiomAudit.lean": "6cfee32a695e4f5ed6842f9700bb1f5f16db938fb0cf9fa2f9f681822b271a18"
   },
   "calibration_identification_formally_proved": true,
   "calibration_identification_from_E_alone_formally_proved": true,
@@ -19,7 +21,21 @@
   "core_identification_from_assembled_E_formally_proved": true,
   "legacy_EOnly_marker_identification_formally_proved": false,
   "actual_observed_E_dataset_recovered": false,
+  "full_symbolic_original_reproduction_proved": true,
+  "full_numerical_original_reproduced": false,
+  "exact_normalized_prefix_samples_verified": 45,
   "steps": [
+    {
+      "label": "prefix_export_consistency",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "notes/reproduce_original_prefix.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "seconds": 0.039,
+      "log": "notes/verification/prefix_export_consistency.log"
+    },
     {
       "label": "lean_version",
       "command": [
@@ -37,7 +53,7 @@
         "--version"
       ],
       "exit_code": 0,
-      "seconds": 0.033,
+      "seconds": 0.032,
       "log": "notes/verification/lake_version.log"
     },
     {
@@ -51,7 +67,7 @@
         "+NavierStokes.PreparedOutgoing:olean"
       ],
       "exit_code": 0,
-      "seconds": 2.599,
+      "seconds": 2.654,
       "log": "notes/verification/source_dependencies.log"
     },
     {
@@ -67,7 +83,7 @@
         "notes/AxialFromAngular.lean"
       ],
       "exit_code": 0,
-      "seconds": 4.928,
+      "seconds": 5.127,
       "log": "notes/verification/AxialFromAngular.log"
     },
     {
@@ -83,7 +99,7 @@
         "notes/ProfileReverseTrace.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.219,
+      "seconds": 5.315,
       "log": "notes/verification/ProfileReverseTrace.log"
     },
     {
@@ -99,7 +115,7 @@
         "notes/FullFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.187,
+      "seconds": 5.298,
       "log": "notes/verification/FullFieldRecovery.log"
     },
     {
@@ -115,7 +131,7 @@
         "notes/SourceFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.034,
+      "seconds": 5.158,
       "log": "notes/verification/SourceFieldRecovery.log"
     },
     {
@@ -131,7 +147,7 @@
         "notes/ObservedFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.334,
+      "seconds": 5.368,
       "log": "notes/verification/ObservedFieldRecovery.log"
     },
     {
@@ -147,8 +163,40 @@
         "notes/CoreFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.897,
+      "seconds": 5.915,
       "log": "notes/verification/CoreFieldRecovery.log"
+    },
+    {
+      "label": "OriginalFieldReproduction",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/OriginalFieldReproduction.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/OriginalFieldReproduction.ilean",
+        "notes/OriginalFieldReproduction.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.12,
+      "log": "notes/verification/OriginalFieldReproduction.log"
+    },
+    {
+      "label": "PrefixSampleCertificate",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/PrefixSampleCertificate.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/PrefixSampleCertificate.ilean",
+        "notes/PrefixSampleCertificate.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 6.174,
+      "log": "notes/verification/PrefixSampleCertificate.log"
     },
     {
       "label": "RecoveryAxiomAudit",
@@ -163,7 +211,7 @@
         "notes/RecoveryAxiomAudit.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.038,
+      "seconds": 5.029,
       "log": "notes/verification/RecoveryAxiomAudit.log"
     }
   ],
@@ -235,7 +283,9 @@
       "matches_lock": true
     }
   ],
-  "audited_theorems": 39,
+  "prefix_export_sha256": "7cbcf135b647072fb7aeb03346421fb5932c8abb7f4f51ca021be19d8c67463c",
+  "prefix_generator_sha256": "c9c94fb209c2491daad17b4467f39af645c3f691a55be79f1ac5474e06606adb",
+  "audited_theorems": 45,
   "axioms_used": [
     "Classical.choice",
     "Quot.sound",
@@ -249,6 +299,8 @@
     "SourceFieldRecovery",
     "ObservedFieldRecovery",
     "CoreFieldRecovery",
+    "OriginalFieldReproduction",
+    "PrefixSampleCertificate",
     "RecoveryAxiomAudit"
   ],
   "legacy_readers_require_supplied_calibration": true,
@@ -259,6 +311,8 @@
   "source_profile_identified": "PreparedOutgoing.prepared.profile",
   "assembled_outgoing_prefix_completion_proved": true,
   "matching_source_instance_recovery_proved": true,
+  "symbolic_observation_constructed_from_same_source": true,
+  "prefix_sample_scope": "0 < x <= 1, eta in [-1,1]; exact U and E/P, with source amplitude P unassigned. All samples checked against the symbolic reproduced original by Lean.",
   "later_assembled_U_agreement_region": "X > heatJoin, eta in [-1,1]",
-  "finished_utc": "2026-11-11T16:39:33.110514+00:00"
+  "finished_utc": "2026-11-11T22:02:59.466604+00:00"
 }

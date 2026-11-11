@@ -49,3 +49,15 @@
 'NavierStokes.CoreFieldRecovery.recoveredU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
 'NavierStokes.CoreFieldRecovery.recoveredLaterU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
 'NavierStokes.CoreFieldRecovery.exists_matched_core_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedU_eq_original' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedE_prefix_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.OriginalFieldReproduction.reproducedU_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.PrefixSampleCertificate.all_samples' depends on axioms: [propext, Classical.choice, Quot.sound]

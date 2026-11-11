@@ -1,0 +1,11 @@
+Exit code: 1
+notes/OriginalFieldReproduction.lean:52:4: error: Type mismatch: After simplification, term
+  Real.pow_rpow_inv_natCast (LT.lt.le ht)
+    (have this :=
+      Mathlib.Meta.NormNum.isNat_eq_false (Mathlib.Meta.NormNum.isNat_ofNat ℕ (Eq.refl 10))
+        (Mathlib.Meta.NormNum.isNat_ofNat ℕ (Eq.refl 0)) (Eq.refl false);
+    this)
+ has type
+  @Eq ℝ ((t ^ 10) ^ (↑10)⁻¹) t
+but is expected to have type
+  @Eq ℝ ((t ^ 10) ^ 10⁻¹) t
