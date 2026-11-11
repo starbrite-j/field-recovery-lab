@@ -1,0 +1,11 @@
+Command: python3 notes/check_flatten_markers.py --output notes/flatten_marker_audit.json
+Exit code: 1
+The first fixture run rejected neither a prefix-only window nor its poor held-out fit.
+Traceback (most recent call last):
+  File "/Users/jj/NavierStokesAndEuler/notes/check_flatten_markers.py", line 229, in <module>
+    main()
+  File "/Users/jj/NavierStokesAndEuler/notes/check_flatten_markers.py", line 219, in main
+    result = run_checks()
+  File "/Users/jj/NavierStokesAndEuler/notes/check_flatten_markers.py", line 187, in run_checks
+    raise AssertionError("Invalid observations accepted: " + label)
+AssertionError: Invalid observations accepted: missing_transition

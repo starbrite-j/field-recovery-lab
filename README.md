@@ -69,6 +69,8 @@ upstream result.
 | [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 39 explicit axiom checks. |
 | [proof_verification.json](notes/verification/proof_verification.json) | Latest saved pass, source revision, proof hashes, toolchain, dependency revisions, and exit codes. |
 | [verification/runs](notes/verification/runs) | Historical compiler runs, including failed attempts. |
+| [check_flatten_markers.py](notes/check_flatten_markers.py) | Audit rounded boundary predicates and estimate a flattening endpoint from interior log-ratio markers. |
+| [flatten_marker_audit.json](notes/flatten_marker_audit.json) | Nine controlled finite-precision cases and six rejected-input cases. |
 | [PROVENANCE.json](PROVENANCE.json) | Pinned upstream revision and the saved verification snapshot. |
 
 The original successful run was saved on 2026-11-11. Its absolute paths describe
@@ -135,6 +137,56 @@ python3 -m venv .venv
 The saved numerical outputs are [early_calibration_audit.json](notes/early_calibration_audit.json)
 and [axial_recovery_audit.json](notes/axial_recovery_audit.json). These checks do
 not compile Lean; run the proof verification separately.
+
+## Finite-precision checkpoint
+
+The exact endpoint proof uses a flat-boundary equality. In double precision,
+the source flattening law can round to the same 2:1 ratio after the true
+endpoint. The controlled fixtures found an endpoint shift of about 16.1% of
+the flattening length. This is a limitation of translating the exact reader
+directly into a floating-point test.
+
+The new conditional estimator fits two interior log-ratio levels to estimate
+both the endpoint and flattening length. Four additional levels check the fit.
+The nine cases use three scales and log-amplitude noise amplitudes from zero
+through `1e-6`:
+
+| Flattening length | Rounded-equality endpoint error | Largest interior endpoint error |
+| --- | --- | --- |
+| 80 | 12.896 | 0.000283 |
+| 160 | 25.792 | 0.000565 |
+| 800 | 128.960 | 0.002824 |
+
+Endpoint errors are in **log radius**, `z = log(X)`. These fixtures follow the
+source flattening formula with an unrelated early prefix and later bounded
+contrasts. They are not certified `Profile` or PDE witnesses, and they do not
+test the full calibration/E/U pipeline. A successful local fit cannot rule out
+a lookalike prefix or certify that a finite observation window contains the
+actual last transition. No universal noise or coverage guarantee is claimed.
+
+The script rejects the tested missing-transition, large-gap, duplicate-radius,
+nonfinite-value, excessive-fit-error, and underflowed-amplitude cases. Raw fields
+already rounded to zero cannot be converted back to their lost log amplitudes.
+JSON command-line checks are saved in
+[numerical_cli_verification.json](notes/verification/numerical_cli_verification.json).
+
+Run the fixture audit with standard Python:
+
+```sh
+python3 notes/check_flatten_markers.py --output notes/flatten_marker_audit.json
+```
+
+For conditional estimation, supply a JSON object with a `points` list. Each
+point has `z`, `log_e0`, and `log_e1`, using natural logarithms of radius and
+the two positive angular fields. Radii must increase strictly. Choose a maximum
+allowed gap and fit residual appropriate to the observation provider:
+
+```sh
+python3 notes/check_flatten_markers.py --input samples.json --max-gap 0.1 --max-fit-residual 0.0001
+```
+
+The result is explicitly marked `conditional_estimate`. The supplied gap and
+residual limits are checks, not certificates of source membership or coverage.
 
 ## Archive integrity
 

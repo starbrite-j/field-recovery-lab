@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "scope": "JSON CLI contract on controlled flattening-law fixtures",
+  "script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658",
+  "actual_observed_dataset_recovered": false,
+  "checks": [
+    {
+      "case": "valid_log_fields",
+      "exit_code": 0,
+      "estimate": {
+        "status": "conditional_estimate",
+        "endpoint_log_radius": 9.9999674497139,
+        "flatten_length": 80.00006526321542,
+        "quarter_step_log_radius": 47.27883004562746,
+        "half_step_log_radius": 50.00000008132161,
+        "maximum_held_out_log_ratio_residual": 2.726654354523461e-07,
+        "source_membership_certified": false,
+        "finite_noise_error_bound_proved": false,
+        "full_field_recovery_tested": false,
+        "coverage_certified": false,
+        "supplied_max_gap": 0.021,
+        "supplied_max_fit_residual": 0.0001,
+        "observation_count": 20001,
+        "python_version": "3.14.7",
+        "float_mantissa_bits": 53,
+        "script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658"
+      }
+    },
+    {
+      "case": "missing_coverage_constraint",
+      "exit_code": 2,
+      "rejection": "check_flatten_markers.py: error: --input requires an explicit --max-gap coverage constraint"
+    },
+    {
+      "case": "too_few_points",
+      "exit_code": 2,
+      "rejection": "At least four observations are required."
+    },
+    {
+      "case": "nonfinite_value",
+      "exit_code": 2,
+      "rejection": "Observations must be finite."
+    }
+  ]
+}

@@ -28,5 +28,11 @@
   "calibration_identification_scope": "CoreFieldRecovery: complete exact assembled E in the NominalProfile source family. Observable endpoint, rate, patch, scale, ramp, P, m, wait markers recover the core; the boundary tail supplies h and completes calibration. No supplied core or calibration. Legacy FullFieldRecovery.EOnly markers remain unproved.",
   "core_identification_from_assembled_E_formally_proved": true,
   "legacy_EOnly_marker_identification_formally_proved": false,
-  "finite_noisy_observation_recovery_proved": false
+  "finite_noisy_observation_recovery_proved": false,
+  "flatten_marker_audit": "notes/flatten_marker_audit.json",
+  "flatten_marker_numerical_cases": 9,
+  "flatten_marker_rejection_cases": 6,
+  "flatten_marker_script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658",
+  "numerical_cli_verification": "notes/verification/numerical_cli_verification.json",
+  "numerical_source_Profile_certified": false
 }

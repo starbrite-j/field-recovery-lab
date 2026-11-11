@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "scope": "Controlled source flattening-law fixtures and conditional interior-marker estimator",
+  "cases": 9,
+  "rejected_inputs": [
+    "missing_transition",
+    "large_gap",
+    "duplicate_radius",
+    "nonfinite_amplitude",
+    "excessive_fit_error",
+    "underflowed_raw_fields"
+  ],
+  "case_results": [
+    {
+      "endpoint": 10.0,
+      "length": 80.0,
+      "noise_amplitude": 0.0,
+      "interior_endpoint_absolute_error": 3.002590072753719e-05,
+      "interior_length_absolute_error": 6.005180148349609e-05,
+      "rounded_equality_endpoint_error": 12.896,
+      "held_out_log_ratio_residual": 2.886735075979807e-07
+    },
+    {
+      "endpoint": 10.0,
+      "length": 80.0,
+      "noise_amplitude": 1e-08,
+      "interior_endpoint_absolute_error": 3.255028610027466e-05,
+      "interior_length_absolute_error": 6.526321541855395e-05,
+      "rounded_equality_endpoint_error": 12.896,
+      "held_out_log_ratio_residual": 2.726654354523461e-07
+    },
+    {
+      "endpoint": 10.0,
+      "length": 80.0,
+      "noise_amplitude": 1e-06,
+      "interior_endpoint_absolute_error": 0.0002823396409326051,
+      "interior_length_absolute_error": 0.0005809352899746045,
+      "rounded_equality_endpoint_error": 12.896,
+      "held_out_log_ratio_residual": 1.9905396181907342e-06
+    },
+    {
+      "endpoint": 500.0,
+      "length": 160.0,
+      "noise_amplitude": 0.0,
+      "interior_endpoint_absolute_error": 6.0051789319004456e-05,
+      "interior_length_absolute_error": 0.0001201035770748149,
+      "rounded_equality_endpoint_error": 25.79200000000003,
+      "held_out_log_ratio_residual": 2.8867352119821277e-07
+    },
+    {
+      "endpoint": 500.0,
+      "length": 160.0,
+      "noise_amplitude": 1e-08,
+      "interior_endpoint_absolute_error": 6.510052082830953e-05,
+      "interior_length_absolute_error": 0.00013052632513677054,
+      "rounded_equality_endpoint_error": 25.79200000000003,
+      "held_out_log_ratio_residual": 2.726655224383201e-07
+    },
+    {
+      "endpoint": 500.0,
+      "length": 160.0,
+      "noise_amplitude": 1e-06,
+      "interior_endpoint_absolute_error": 0.0005646792594120598,
+      "interior_length_absolute_error": 0.0011618705314901945,
+      "rounded_equality_endpoint_error": 25.79200000000003,
+      "held_out_log_ratio_residual": 1.9905395743369247e-06
+    },
+    {
+      "endpoint": 100000.0,
+      "length": 800.0,
+      "noise_amplitude": 0.0,
+      "interior_endpoint_absolute_error": 0.0003002512385137379,
+      "interior_length_absolute_error": 0.0006005022501085477,
+      "rounded_equality_endpoint_error": 128.9600000000064,
+      "held_out_log_ratio_residual": 2.886739943197547e-07
+    },
+    {
+      "endpoint": 100000.0,
+      "length": 800.0,
+      "noise_amplitude": 1e-08,
+      "interior_endpoint_absolute_error": 0.00032549395109526813,
+      "interior_length_absolute_error": 0.0006526146802343646,
+      "rounded_equality_endpoint_error": 128.9600000000064,
+      "held_out_log_ratio_residual": 2.726690145893329e-07
+    },
+    {
+      "endpoint": 100000.0,
+      "length": 800.0,
+      "noise_amplitude": 1e-06,
+      "interior_endpoint_absolute_error": 0.0028233708580955863,
+      "interior_length_absolute_error": 0.005809300734881617,
+      "rounded_equality_endpoint_error": 128.9600000000064,
+      "held_out_log_ratio_residual": 1.9905410513776367e-06
+    }
+  ],
+  "certified_Profile_or_PDE_witness": false,
+  "actual_observed_dataset_recovered": false,
+  "full_calibration_or_EU_pipeline_tested": false,
+  "universal_noise_or_coverage_guarantee": false,
+  "finding": "Rounded exact equality shifts the endpoint by more than a tenth of the flattening length in these fixtures. Interior ratio markers avoid that boundary predicate, subject to the stated sampling and source-family assumptions.",
+  "python_version": "3.14.7",
+  "float_mantissa_bits": 53,
+  "script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658"
+}
