@@ -1,0 +1,68 @@
+{
+  "status": "failed",
+  "started_utc": "2026-11-11T14:58:45.610631+00:00",
+  "source_revision": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+  "toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
+  "proof_files_sha256": {
+    "notes/AxialFromAngular.lean": "7c549279ee7e076a3fcb9c365877450f91eccd62e4fd984f9843bd6d559e7923",
+    "notes/ProfileReverseTrace.lean": "7e100f797607e4505cbd80440103347226cef8cc43c6e881fc92fc2932fddf26",
+    "notes/FullFieldRecovery.lean": "f104868d649ac4b0a520dd62475c0009e85466adc09ae71b9ec3edeaacf38096",
+    "notes/RecoveryAxiomAudit.lean": "42a5d92e23d44005f368e7333081b94167d4f914f392102f7d65f5cc707f7a3b"
+  },
+  "calibration_identification_formally_proved": false,
+  "actual_observed_E_dataset_recovered": false,
+  "steps": [
+    {
+      "label": "lean_version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.035,
+      "log": "notes/verification/lean_version.log"
+    },
+    {
+      "label": "lake_version",
+      "command": [
+        "lake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.037,
+      "log": "notes/verification/lake_version.log"
+    },
+    {
+      "label": "source_dependencies",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "+NavierStokes.ExtendedHeatedOutgoing:olean",
+        "+NavierStokes.HeatSwitchHistoryDerivatives:olean"
+      ],
+      "exit_code": 0,
+      "seconds": 130.26,
+      "log": "notes/verification/source_dependencies.log"
+    },
+    {
+      "label": "AxialFromAngular",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.ilean",
+        "notes/AxialFromAngular.lean"
+      ],
+      "exit_code": 1,
+      "seconds": 5.525,
+      "log": "notes/verification/AxialFromAngular.log"
+    }
+  ],
+  "error": "AxialFromAngular exited 1; see /Users/jj/NavierStokesAndEuler/notes/verification/AxialFromAngular.log",
+  "finished_utc": "2026-11-11T15:01:01.481687+00:00"
+}

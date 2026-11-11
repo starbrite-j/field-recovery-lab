@@ -1,0 +1,100 @@
+{
+  "status": "failed",
+  "started_utc": "2026-11-11T15:03:09.075830+00:00",
+  "source_revision": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+  "toolchain": "leanprover/lean4:v4.34.0-rc2",
+  "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
+  "proof_files_sha256": {
+    "notes/AxialFromAngular.lean": "bd3a5db9ec0f35cc31a2a00344f2896933bb8dee39d0d03ff21ba3fb6d7455c0",
+    "notes/ProfileReverseTrace.lean": "39b0de12f488f439fafda6ab81bf82478d6d6350c621819aa9974c607eb06849",
+    "notes/FullFieldRecovery.lean": "ea6dfe38d0622c2f3ec741b0bc28c2f92e5a0779547001d8934402f46f14b1e1",
+    "notes/RecoveryAxiomAudit.lean": "42a5d92e23d44005f368e7333081b94167d4f914f392102f7d65f5cc707f7a3b"
+  },
+  "calibration_identification_formally_proved": false,
+  "actual_observed_E_dataset_recovered": false,
+  "steps": [
+    {
+      "label": "lean_version",
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.033,
+      "log": "notes/verification/lean_version.log"
+    },
+    {
+      "label": "lake_version",
+      "command": [
+        "lake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 0.033,
+      "log": "notes/verification/lake_version.log"
+    },
+    {
+      "label": "source_dependencies",
+      "command": [
+        "lake",
+        "--no-cache",
+        "build",
+        "+NavierStokes.ExtendedHeatedOutgoing:olean",
+        "+NavierStokes.HeatSwitchHistoryDerivatives:olean"
+      ],
+      "exit_code": 0,
+      "seconds": 2.853,
+      "log": "notes/verification/source_dependencies.log"
+    },
+    {
+      "label": "AxialFromAngular",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/AxialFromAngular.ilean",
+        "notes/AxialFromAngular.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.19,
+      "log": "notes/verification/AxialFromAngular.log"
+    },
+    {
+      "label": "ProfileReverseTrace",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ProfileReverseTrace.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/ProfileReverseTrace.ilean",
+        "notes/ProfileReverseTrace.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.314,
+      "log": "notes/verification/ProfileReverseTrace.log"
+    },
+    {
+      "label": "FullFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/FullFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/FullFieldRecovery.ilean",
+        "notes/FullFieldRecovery.lean"
+      ],
+      "exit_code": 1,
+      "seconds": 5.198,
+      "log": "notes/verification/FullFieldRecovery.log"
+    }
+  ],
+  "error": "FullFieldRecovery exited 1; see /Users/jj/NavierStokesAndEuler/notes/verification/FullFieldRecovery.log",
+  "finished_utc": "2026-11-11T15:03:27.709234+00:00"
+}

@@ -1,0 +1,18 @@
+notes/FullFieldRecovery.lean:400:23: error(lean.unknownIdentifier): Unknown identifier `one_rpow`
+notes/FullFieldRecovery.lean:400:2: error: Type mismatch: After simplification, term
+  h
+ has type
+  OutgoingDilation.E F XR (OutgoingDilation.patchRadius F XR, eta) =
+    OutgoingDilation.shapedPatchAmplitude F eta * 1 ^ (-(1 / 2 + F.data.core.lam))
+but is expected to have type
+  OutgoingDilation.E F XR (OutgoingDilation.patchRadius F XR, eta) = OutgoingDilation.shapedPatchAmplitude F eta
+notes/FullFieldRecovery.lean:418:8: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+notes/FullFieldRecovery.lean:427:4: error: Type mismatch: After simplification, term
+  Eq.symm hb
+ has type
+  OutgoingDilation.shapedPatchAmplitude F eta * (X / R) ^ (-(1 / 2 + F.data.core.lam)) =
+    OutgoingDilation.E F XR (OutgoingDilation.patchRadius F XR * (X / R), eta)
+but is expected to have type
+  OutgoingDilation.shapedPatchAmplitude F eta * (X / R) ^ (-(1 / 2 + F.data.core.lam)) =
+    OutgoingDilation.E F XR (X, eta)
+notes/FullFieldRecovery.lean:428:8: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead

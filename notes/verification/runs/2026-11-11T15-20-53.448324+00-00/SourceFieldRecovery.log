@@ -1,0 +1,8 @@
+notes/SourceFieldRecovery.lean:131:29: error: Application type mismatch: The argument
+  heta
+has type
+  eta ∈ HeatedOutgoing.parameterDomain
+but is expected to have type
+  ?m.47.2 ∈ HeatedOutgoing.parameterDomain
+in the application
+  NominalProfile.Witness.heat_agreement W ?m.48 heta

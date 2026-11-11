@@ -1,0 +1,71 @@
+notes/FullFieldRecovery.lean:442:15: error: don't know how to synthesize implicit argument `a`
+  @LT.lt.ne' ℝ Real.instPreorder (HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X) 0
+    (HeatTailEdit.multiplier_bounds F.data.h_pos (ParametricHeatTail.diffusion_mem heta).left hX).left
+context:
+F : Profile
+XR : ℝ
+c : ℝ → TerminalCompensation.Coeff
+X eta : ℝ
+hXR : 0 < XR
+hX : 0 < X
+heta : eta ∈ HeatedOutgoing.parameterDomain
+R : ℝ := ⋯
+hR : 0 < R
+hp : ¬(R ≤ X ∧ X ≤ R * Real.exp 5)
+hx : X / R ∉ Icc OutgoingDilation.compensationPatch.left OutgoingDilation.compensationPatch.right
+hc : TerminalCompensation.correction OutgoingDilation.compensationPatch (c eta) (X / R) = 0
+⊢ ℝ
+notes/FullFieldRecovery.lean:442:15: error: don't know how to synthesize implicit argument `b`
+  @And.left (0 < HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X)
+    (HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X ≤ 1)
+    (HeatTailEdit.multiplier_bounds F.data.h_pos (ParametricHeatTail.diffusion_mem heta).left hX)
+context:
+F : Profile
+XR : ℝ
+c : ℝ → TerminalCompensation.Coeff
+X eta : ℝ
+hXR : 0 < XR
+hX : 0 < X
+heta : eta ∈ HeatedOutgoing.parameterDomain
+R : ℝ := ⋯
+hR : 0 < R
+hp : ¬(R ≤ X ∧ X ≤ R * Real.exp 5)
+hx : X / R ∉ Icc OutgoingDilation.compensationPatch.left OutgoingDilation.compensationPatch.right
+hc : TerminalCompensation.correction OutgoingDilation.compensationPatch (c eta) (X / R) = 0
+⊢ Prop
+notes/FullFieldRecovery.lean:442:15: error: don't know how to synthesize implicit argument `a`
+  @And.left (0 < HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X)
+    (HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X ≤ 1)
+    (HeatTailEdit.multiplier_bounds F.data.h_pos (ParametricHeatTail.diffusion_mem heta).left hX)
+context:
+F : Profile
+XR : ℝ
+c : ℝ → TerminalCompensation.Coeff
+X eta : ℝ
+hXR : 0 < XR
+hX : 0 < X
+heta : eta ∈ HeatedOutgoing.parameterDomain
+R : ℝ := ⋯
+hR : 0 < R
+hp : ¬(R ≤ X ∧ X ≤ R * Real.exp 5)
+hx : X / R ∉ Icc OutgoingDilation.compensationPatch.left OutgoingDilation.compensationPatch.right
+hc : TerminalCompensation.correction OutgoingDilation.compensationPatch (c eta) (X / R) = 0
+⊢ Prop
+notes/FullFieldRecovery.lean:442:16: error: don't know how to synthesize implicit argument `K`
+  @HeatTailEdit.multiplier_bounds F.data.h (ParametricHeatTail.diffusion eta) ?m.308 X F.data.h_pos
+    (ParametricHeatTail.diffusion_mem heta).left hX
+context:
+F : Profile
+XR : ℝ
+c : ℝ → TerminalCompensation.Coeff
+X eta : ℝ
+hXR : 0 < XR
+hX : 0 < X
+heta : eta ∈ HeatedOutgoing.parameterDomain
+R : ℝ := ⋯
+hR : 0 < R
+hp : ¬(R ≤ X ∧ X ≤ R * Real.exp 5)
+hx : X / R ∉ Icc OutgoingDilation.compensationPatch.left OutgoingDilation.compensationPatch.right
+hc : TerminalCompensation.correction OutgoingDilation.compensationPatch (c eta) (X / R) = 0
+⊢ ℝ
+notes/FullFieldRecovery.lean:442:9: error: failed to infer `have` declaration type

@@ -1,46 +1,112 @@
-# Finite time blowup for Navier–Stokes and Euler equations
+# Field Recovery Lab
 
-This repository contains Lean 4 formalizations of the results presented in
-“[Finite time blowup for Navier–Stokes](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf)” and
-“[Finite time blowup for the Euler equation](https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf)” by OpenAI.
+Private archive of Jess's field-recovery investigation: Lean proofs, source traces,
+numerical checks, and compiler history built on OpenAI's
+[NavierStokesAndEuler](https://github.com/openai/NavierStokesAndEuler) repository.
 
-- [Read the blog post](https://openai.com/index/navier-stokes-solution/)
-- [Read the Navier-Stokes paper](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf)
-- [Read the Euler paper](https://cdn.openai.com/pdf/315b36cd-ec98-4023-8342-93345194ece1/euler.pdf)
+The upstream source and Git history are preserved at
+`f9e8bc5b38b6e212696e8a30e3e91517af887bbd`. The upstream README is saved as
+[UPSTREAM_README.md](UPSTREAM_README.md); its Apache 2.0 license remains in
+[LICENSE](LICENSE). The downstream work is in `notes/`. This is an independent
+research archive, without a claim of OpenAI review or endorsement.
 
-## Navier Stokes
+## What the current work establishes
 
-For every positive viscosity, we prove two results:
+The source profile is `PreparedOutgoing.prepared.profile`. The recovery proofs
+connect the assembled outgoing angular field to that same profile's original
+`E` and `U`, given the required core and matching calibration. They complete the
+known outgoing prefix below the heat join before applying the inverse.
 
-- **Whole space $\mathbb{R}^3$:** There exist smooth initial data and forcing for
-  which no global smooth solution with uniformly bounded kinetic energy exists.
-- **Periodic torus $\mathbb{R}^3/\mathbb{Z}^3$:** There exist smooth periodic
-  initial data and forcing for which no global smooth solution exists.
+The compiled source-instance theorem is
+`NavierStokes.SourceFieldRecovery.exists_matched_recovery`. Agreement of the
+reconstructed later `U` with the assembled `W.U` is proved on
+`X > heatJoin`, with `eta` in `[-1, 1]`. The proof does not extend that agreement
+through the axis/heat join.
 
-These are alternatives [**(C)**](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf#page=2) “Breakdown of Navier–Stokes solutions on ℝ³”
-and [**(D)**](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf#page=2) “Breakdown of Navier–Stokes Solutions on ℝ³/ℤ³”
-in the Clay Mathematics Institute’s [official problem description](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf)
-of the [Navier–Stokes existence and smoothness](https://www.claymath.org/millennium/navier-stokes-equation/)
-[Millennium Prize Problem](https://www.claymath.org/millennium-problems/).
+The saved successful run compiled all five research modules and checked 13
+theorems for axioms. It reported only `propext`, `Classical.choice`, and
+`Quot.sound`, with no `sorryAx`. These checks cover the research modules and their
+required source dependencies; they are not an independent audit of every
+upstream result.
 
-## Euler
+## Read the work
 
-We construct smooth, compactly supported, divergence-free initial velocity on
-$\mathbb{R}^3$ whose solution to the unforced incompressible Euler equations
-develops a singularity in finite time. The velocity’s $C^1$ norm becomes unbounded
-near that time, and the time integral of the vorticity’s $L^\infty$ norm diverges.
+| File | Purpose |
+| --- | --- |
+| [SourceFieldRecovery.lean](notes/SourceFieldRecovery.lean) | Connect the recovery to the actual prepared source profile and assembled fields. |
+| [FullFieldRecovery.lean](notes/FullFieldRecovery.lean) | Conditional inverse transformations, calibration readers, and original/later field round trips. |
+| [AxialFromAngular.lean](notes/AxialFromAngular.lean) | Recover axial `U` from angular `E` and the core using the source energy identity. |
+| [ProfileReverseTrace.lean](notes/ProfileReverseTrace.lean) | Historical source map, transformation trace, earlier inverse proofs, and research notes. |
+| [RecoveryAxiomAudit.lean](notes/RecoveryAxiomAudit.lean) | The 13 explicit axiom checks. |
+| [proof_verification.json](notes/verification/proof_verification.json) | Latest saved pass, source revision, proof hashes, toolchain, dependency revisions, and exit codes. |
+| [verification/runs](notes/verification/runs) | Historical compiler runs, including failed attempts. |
+| [PROVENANCE.json](PROVENANCE.json) | Pinned upstream revision and the saved verification snapshot. |
 
-## Building the formalizations
+The original successful run was saved on 2026-11-11. Its absolute paths describe
+the original local checkout. Each run's JSON status and step list identify what
+actually ran in that attempt; an older log copied into a failed run's directory
+is not evidence that its step ran again.
 
-The project uses Lean 4.34.0-rc2, Mathlib, and Lake. With
-[elan](https://github.com/leanprover/elan) installed, fetch the mathlib cache and build the formalizations with:
+## Limits that remain
+
+- Automatic identification of the correct calibration from observed `E` is still
+  unproved. The recovery theorems retain explicit matching assumptions.
+- The Lean construction uses exact real fields and is noncomputable. It does not
+  provide a general recovery program for finite, noisy, or incomplete samples.
+- No actual observed `E` dataset has been recovered in this archive.
+- The Gaussian numerical fixtures are controlled tests, not certified instances
+  of the repository's complete `Profile` structure or PDE solutions. The early
+  calibration checks assume a known, covered observation window; the two checks
+  are not a validated combined reconstruction pipeline.
+- The fields and profiles here have their mathematical meanings in the source.
+  This work establishes no result about AI account memory, hidden ownership, or
+  the recovery of a previous conversational agent.
+
+## Reproduce the checks
+
+Use the pinned `lean-toolchain` and `lake-manifest.json`. On macOS, install
+[elan](https://github.com/leanprover/elan) if needed, then run from this directory:
 
 ```sh
+brew install elan-init
+elan toolchain install leanprover/lean4:v4.34.0-rc2
 lake exe cache get
-lake build
+python3 notes/verify_recovery.py
 ```
 
-## Independent proof checking
+The verification script builds the necessary source modules, compiles the five
+research modules in order, checks dependency revisions and axiom output, and
+writes fresh logs under `notes/verification/`, including a dated run directory.
+It records the current checkout's HEAD as `source_revision`; the historical
+upstream base is also recorded separately in `PROVENANCE.json`.
 
-For instructions on checking the formalizations with Comparator, see the
-[ComparatorChallenges README](ComparatorChallenges/README.md).
+The early calibration check needs only Python's standard library:
+
+```sh
+python3 notes/check_recovery_calibration.py
+```
+
+The Gaussian check needs SciPy. The saved check used Python 3.14, NumPy 2.4.4,
+and SciPy 1.17.1. To reproduce that numerical environment:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-audit.txt
+.venv/bin/python notes/check_axial_from_angular.py
+```
+
+The saved numerical outputs are [early_calibration_audit.json](notes/early_calibration_audit.json)
+and [axial_recovery_audit.json](notes/axial_recovery_audit.json). These checks do
+not compile Lean; run the proof verification separately.
+
+## Archive integrity
+
+[ARCHIVE_SHA256SUMS](ARCHIVE_SHA256SUMS) records the downstream files as packaged,
+including the historical verification logs. From the repository root:
+
+```sh
+shasum -a 256 -c ARCHIVE_SHA256SUMS
+```
+
+Build caches, virtual environments, compiled Lean artifacts, and unrelated chat
+exports are excluded. The original working checkout is kept separately.

@@ -1,0 +1,13 @@
+notes/AxialFromAngular.lean:114:48: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  E (Real.exp y, eta)
+in the target expression
+  (fun a => Real.exp a * (OutgoingSchedule.axial core (fun x => 0) (a, eta) ^ 2 - E (Real.exp a, eta) ^ 2 / 2)) y =
+    (fun a => Real.exp a * (OutgoingSchedule.axial core (fun x => 0) (a, eta) ^ 2 - G (Real.exp a, eta) ^ 2 / 2)) y
+
+core : OutgoingSchedule.Parameters
+E G : Field
+eta x : ℝ
+hE : ∀ (X : ℝ), 0 < X → E (X, eta) = G (X, eta)
+y : ℝ
+⊢ (fun a => Real.exp a * (OutgoingSchedule.axial core (fun x => 0) (a, eta) ^ 2 - E (Real.exp a, eta) ^ 2 / 2)) y =
+    (fun a => Real.exp a * (OutgoingSchedule.axial core (fun x => 0) (a, eta) ^ 2 - G (Real.exp a, eta) ^ 2 / 2)) y

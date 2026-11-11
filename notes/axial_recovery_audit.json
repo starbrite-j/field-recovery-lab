@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "scope": "direct energy inverse and later coordinate rescaling on controlled analytic fixtures",
+  "cases": 4,
+  "maximum_absolute_errors": {
+    "quadratic": 6.938893903907228e-18,
+    "linear": 6.765421556309548e-17,
+    "constant": 8.43769498715119e-15,
+    "amplitude": 5.3512749786932545e-14,
+    "U": 4.285460875053104e-14,
+    "later_U": 4.285460875053104e-14
+  },
+  "checks_clamp_transition_and_nonzero_unclamped_energy": true,
+  "checks_consequential_omitted_angular_tail": true,
+  "incomplete_observation_coverage_rejected": true,
+  "uses_log_radius_and_weighted_fields": true,
+  "float64_source_schedule_limit_example": {
+    "rate": 0.008333333333333333,
+    "log_radial_pulse_length": 1560.0,
+    "log_largest_finite_float64": 709.782712893384,
+    "rate_to_power_28": 6.06631713564589e-59,
+    "one_plus_rate_to_power_28_equals_one": true
+  },
+  "actual_source_Profile_instantiated": false,
+  "actual_observed_E_dataset_recovered": false,
+  "early_calibration_integrated_into_same_fixture": false,
+  "terminal_heat_edit_tested": false,
+  "Lean_compiled": false,
+  "case_results": [
+    {
+      "true_constant": -0.7999999999999997,
+      "clamp_active": false,
+      "errors": {
+        "quadratic": 6.938893903907228e-18,
+        "linear": 6.765421556309548e-17,
+        "constant": 8.43769498715119e-15,
+        "amplitude": 2.4868995751603507e-14,
+        "U": 1.9984014443252818e-14,
+        "later_U": 1.9984014443252818e-14
+      },
+      "clamped_polynomial_residual": 3.3306690738754696e-16,
+      "actual_unclamped_energy": -1.1102230246251565e-16,
+      "omitted_tail_constant_error": 0.7944567898848418,
+      "omitted_tail_amplitude_error": 3.051427621006572,
+      "omitted_angular_energy_fraction": 0.9868244113330847,
+      "estimated_quadrature_error": 7.238271190005386e-13
+    },
+    {
+      "true_constant": -0.23,
+      "clamp_active": false,
+      "errors": {
+        "quadratic": 6.938893903907228e-18,
+        "linear": 6.765421556309548e-17,
+        "constant": 2.3869795029440866e-15,
+        "amplitude": 1.4210854715202004e-14,
+        "U": 1.1324274851176597e-14,
+        "later_U": 1.1324274851176597e-14
+      },
+      "clamped_polynomial_residual": 8.326672684688674e-17,
+      "actual_unclamped_energy": 0.0,
+      "omitted_tail_constant_error": 0.23196687542498381,
+      "omitted_tail_amplitude_error": 0.8615186703099649,
+      "omitted_angular_energy_fraction": 0.9868244113330848,
+      "estimated_quadrature_error": 2.4104245421854176e-13
+    },
+    {
+      "true_constant": -0.15,
+      "clamp_active": true,
+      "errors": {
+        "quadratic": 6.938893903907228e-18,
+        "linear": 6.765421556309548e-17,
+        "constant": 1.5543122344752192e-15,
+        "amplitude": 5.3512749786932545e-14,
+        "U": 4.285460875053104e-14,
+        "later_U": 4.285460875053104e-14
+      },
+      "clamped_polynomial_residual": 0.0,
+      "actual_unclamped_energy": -0.02500000000000016,
+      "omitted_tail_constant_error": 0.15302092251833702,
+      "omitted_tail_amplitude_error": 0.19674897512594192,
+      "omitted_angular_energy_fraction": 0.9868244113330847,
+      "estimated_quadrature_error": 1.7577685207149303e-13
+    },
+    {
+      "true_constant": 0.005,
+      "clamp_active": true,
+      "errors": {
+        "quadratic": 6.938893903907228e-18,
+        "linear": 6.765421556309548e-17,
+        "constant": 1.5612511283791264e-17,
+        "amplitude": 6.661338147750939e-16,
+        "U": 4.440892098500626e-16,
+        "later_U": 4.440892098500626e-16
+      },
+      "clamped_polynomial_residual": 0.0,
+      "actual_unclamped_energy": 0.10500000000000004,
+      "omitted_tail_constant_error": 6.313876170890072e-05,
+      "omitted_tail_amplitude_error": 6.661338147750939e-16,
+      "omitted_angular_energy_fraction": 0.9868244113333037,
+      "estimated_quadrature_error": 7.076920214992741e-14
+    }
+  ]
+}

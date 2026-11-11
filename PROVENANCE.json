@@ -1,0 +1,21 @@
+{
+  "upstream_url": "https://github.com/openai/NavierStokesAndEuler",
+  "upstream_commit": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+  "upstream_tree": "a503f07635f200c0f2f9c5361df1fa07f95c4741",
+  "upstream_license": "Apache-2.0",
+  "research_directory": "notes/",
+  "latest_saved_proof_report": "notes/verification/proof_verification.json",
+  "latest_saved_proof_run": "2026-11-11T15:24:44.395704+00:00",
+  "latest_saved_proof_status": "passed",
+  "proof_files_sha256": {
+    "notes/AxialFromAngular.lean": "7b0c54cc3a46febcfd994be0287e39f8abf36cf68fb90a17f2e7a1227b6da34d",
+    "notes/ProfileReverseTrace.lean": "0164d1dbcf1ef256a28874cd5c5b55ef0b427382dfb8e498621e5e1a5bb94847",
+    "notes/FullFieldRecovery.lean": "8e8bfc9ebf745eb8b850164b3cb3a59abaa676f2a6ce5e76861d0a2f41865a58",
+    "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
+    "notes/RecoveryAxiomAudit.lean": "c753da9ea0c84c0492191c0e0df52987858fb2c046f8a340f4e76742d6b815e5"
+  },
+  "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
+  "scope": "Private downstream recovery research; the imported upstream formalizations are preserved with their history. The saved checks cover the research modules and required dependencies, not an independent audit of every upstream result.",
+  "calibration_identification_formally_proved": false,
+  "actual_observed_E_dataset_recovered": false
+}

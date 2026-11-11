@@ -1,0 +1,19 @@
+'NavierStokes.AxialFromAngular.constantFromField_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.AxialFromAngular.UFromField_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.AxialFromAngular.UFromField_congr_slice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.restoreDilatedE_roundtrip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.restoreE_roundtrip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.FullFieldRecovery.originalUFromObservedE_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.FullFieldRecovery.laterUFromObservedE_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.FullFieldRecovery.EOnly.recoveredUDirect_roundtrip' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NavierStokes.ProfileReverseTrace.heated_to_scheduled_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverOriginalE_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverOriginalU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.recoverLaterU_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NavierStokes.SourceFieldRecovery.exists_matched_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
