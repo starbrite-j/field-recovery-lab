@@ -2,6 +2,7 @@ import notes.FullFieldRecovery
 import notes.ProfileReverseTrace
 import notes.SourceFieldRecovery
 import notes.ObservedFieldRecovery
+import notes.CoreFieldRecovery
 
 /-!
 The output of these commands is saved by notes/verify_recovery.py. The audit
@@ -10,6 +11,8 @@ Standard foundational axioms are recorded explicitly. The original E-only
 decoded-core and calibration equalities remain hypotheses of that theorem.
 ObservedFieldRecovery proves the calibration for exact assembled E with a
 retained core, without assuming the calibration it is supposed to recover.
+CoreFieldRecovery proves the core markers and removes the retained core input
+for complete exact assembled E. The older EOnly marker definitions are separate.
 -/
 
 #print axioms NavierStokes.AxialFromAngular.constantFromField_source
@@ -36,3 +39,20 @@ retained core, without assuming the calibration it is supposed to recover.
 #print axioms NavierStokes.ObservedFieldRecovery.recoveredU_source
 #print axioms NavierStokes.ObservedFieldRecovery.recoveredLaterU_source
 #print axioms NavierStokes.ObservedFieldRecovery.exists_matched_observed_recovery
+
+#print axioms NavierStokes.CoreFieldRecovery.reset_relative_bound
+#print axioms NavierStokes.CoreFieldRecovery.logE_ratio_after_core
+#print axioms NavierStokes.CoreFieldRecovery.endpointRadius_source
+#print axioms NavierStokes.CoreFieldRecovery.readRate_source
+#print axioms NavierStokes.CoreFieldRecovery.readPatchRadius_source
+#print axioms NavierStokes.CoreFieldRecovery.readLogScale_source
+#print axioms NavierStokes.CoreFieldRecovery.secondRampStart_source
+#print axioms NavierStokes.CoreFieldRecovery.readM_source
+#print axioms NavierStokes.CoreFieldRecovery.readP_source
+#print axioms NavierStokes.CoreFieldRecovery.readWait_source
+#print axioms NavierStokes.CoreFieldRecovery.decodedCore_source
+#print axioms NavierStokes.CoreFieldRecovery.readCalibration_source
+#print axioms NavierStokes.CoreFieldRecovery.recoveredE_source
+#print axioms NavierStokes.CoreFieldRecovery.recoveredU_source
+#print axioms NavierStokes.CoreFieldRecovery.recoveredLaterU_source
+#print axioms NavierStokes.CoreFieldRecovery.exists_matched_core_recovery

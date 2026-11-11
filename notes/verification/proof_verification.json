@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "started_utc": "2026-11-11T16:20:11.574903+00:00",
+  "started_utc": "2026-11-11T16:38:53.699973+00:00",
   "source_revision": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
   "toolchain": "leanprover/lean4:v4.34.0-rc2",
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
@@ -10,11 +10,14 @@
     "notes/FullFieldRecovery.lean": "8e8bfc9ebf745eb8b850164b3cb3a59abaa676f2a6ce5e76861d0a2f41865a58",
     "notes/SourceFieldRecovery.lean": "3a1de2028bceeb740bffc8a8bf5e368686f0f652fb98901738181c006b5bbc92",
     "notes/ObservedFieldRecovery.lean": "f143ebe39d207f9f1cda918bef6a74de48ca721525a2754afe2f3d168e02aa7e",
-    "notes/RecoveryAxiomAudit.lean": "cc56b80f2acf0c0d1e6f950179faf6d04ba3dbaf05ef91cc0a06cf5f214738f4"
+    "notes/CoreFieldRecovery.lean": "f4cc8a67f818ac72db863ff4a2eb58e0830998d97197a928483615aed3e6efe4",
+    "notes/RecoveryAxiomAudit.lean": "ffccb2c1cd023311a0440813a86dc7675b4efd0067505e0224b4734e19cbefa7"
   },
-  "calibration_identification_formally_proved": false,
-  "calibration_identification_from_E_alone_formally_proved": false,
+  "calibration_identification_formally_proved": true,
+  "calibration_identification_from_E_alone_formally_proved": true,
   "calibration_identification_with_retained_core_formally_proved": true,
+  "core_identification_from_assembled_E_formally_proved": true,
+  "legacy_EOnly_marker_identification_formally_proved": false,
   "actual_observed_E_dataset_recovered": false,
   "steps": [
     {
@@ -48,7 +51,7 @@
         "+NavierStokes.PreparedOutgoing:olean"
       ],
       "exit_code": 0,
-      "seconds": 2.614,
+      "seconds": 2.599,
       "log": "notes/verification/source_dependencies.log"
     },
     {
@@ -64,7 +67,7 @@
         "notes/AxialFromAngular.lean"
       ],
       "exit_code": 0,
-      "seconds": 4.93,
+      "seconds": 4.928,
       "log": "notes/verification/AxialFromAngular.log"
     },
     {
@@ -80,7 +83,7 @@
         "notes/ProfileReverseTrace.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.135,
+      "seconds": 5.219,
       "log": "notes/verification/ProfileReverseTrace.log"
     },
     {
@@ -96,7 +99,7 @@
         "notes/FullFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.207,
+      "seconds": 5.187,
       "log": "notes/verification/FullFieldRecovery.log"
     },
     {
@@ -112,7 +115,7 @@
         "notes/SourceFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.111,
+      "seconds": 5.034,
       "log": "notes/verification/SourceFieldRecovery.log"
     },
     {
@@ -128,8 +131,24 @@
         "notes/ObservedFieldRecovery.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.392,
+      "seconds": 5.334,
       "log": "notes/verification/ObservedFieldRecovery.log"
+    },
+    {
+      "label": "CoreFieldRecovery",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/CoreFieldRecovery.olean",
+        "-i",
+        "/Users/jj/NavierStokesAndEuler/.lake/build/lib/lean/notes/CoreFieldRecovery.ilean",
+        "notes/CoreFieldRecovery.lean"
+      ],
+      "exit_code": 0,
+      "seconds": 5.897,
+      "log": "notes/verification/CoreFieldRecovery.log"
     },
     {
       "label": "RecoveryAxiomAudit",
@@ -144,7 +163,7 @@
         "notes/RecoveryAxiomAudit.lean"
       ],
       "exit_code": 0,
-      "seconds": 5.087,
+      "seconds": 5.038,
       "log": "notes/verification/RecoveryAxiomAudit.log"
     }
   ],
@@ -216,7 +235,7 @@
       "matches_lock": true
     }
   ],
-  "audited_theorems": 23,
+  "audited_theorems": 39,
   "axioms_used": [
     "Classical.choice",
     "Quot.sound",
@@ -229,15 +248,17 @@
     "FullFieldRecovery",
     "SourceFieldRecovery",
     "ObservedFieldRecovery",
+    "CoreFieldRecovery",
     "RecoveryAxiomAudit"
   ],
   "legacy_readers_require_supplied_calibration": true,
   "assembled_reader_requires_supplied_calibration": false,
-  "assembled_reader_requires_retained_core": true,
-  "calibration_identification_scope": "Complete exact assembled E with retained core metadata; height and scale read from the eta=1 tail. FullFieldRecovery.EOnly automatic core identification remains unproved.",
+  "assembled_reader_requires_retained_core": false,
+  "calibration_identification_scope": "CoreFieldRecovery: complete exact assembled E in the NominalProfile source family. Observable endpoint, rate, patch, scale, ramp, P, m, wait markers recover the core; the boundary tail supplies h and completes calibration. No supplied core or calibration. Legacy FullFieldRecovery.EOnly markers remain unproved.",
+  "finite_noisy_observation_recovery_proved": false,
   "source_profile_identified": "PreparedOutgoing.prepared.profile",
   "assembled_outgoing_prefix_completion_proved": true,
   "matching_source_instance_recovery_proved": true,
   "later_assembled_U_agreement_region": "X > heatJoin, eta in [-1,1]",
-  "finished_utc": "2026-11-11T16:20:45.222617+00:00"
+  "finished_utc": "2026-11-11T16:39:33.110514+00:00"
 }

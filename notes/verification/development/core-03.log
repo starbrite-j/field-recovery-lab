@@ -1,0 +1,26 @@
+Exit code: 1
+notes/CoreFieldRecovery.lean:314:55: error(lean.unknownIdentifier): Unknown identifier `𝓝`
+notes/CoreFieldRecovery.lean:312:81: error: unsolved goals
+F : OutgoingProfile.Profile
+W : NominalProfile.Witness F
+y : ℝ
+hlo : -5 < y
+hhi : y < OutgoingDilation.patchClock F
+r : ℝ := Real.log W.controls.radius
+heq :
+  FullFieldRecovery.EOnly.logAngular W.E =ᶠ[sorry] fun z =>
+    Real.log (OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam (z - r))
+⊢ deriv (FullFieldRecovery.EOnly.logAngular W.E) (Real.log W.controls.radius + y) =
+    OutgoingSchedule.slope F.data.core.dropLength F.data.core.lam y - 1 / 2
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+notes/CoreFieldRecovery.lean:366:25: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+notes/CoreFieldRecovery.lean:366:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

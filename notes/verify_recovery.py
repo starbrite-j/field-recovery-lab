@@ -8,9 +8,10 @@ are already installed. This script performs no package installation or update,
 and leaves tracked source/configuration files alone. It compiles notes modules
 outside the repository's default library targets in their dependency order.
 Logs and a machine-readable report are written under notes/verification/.
-The report distinguishes the proved tail calibration with retained core
-metadata from the still-unproved automatic recovery of an unknown core and
-calibration from E alone. Numerical observation recovery remains separate.
+The report distinguishes exact source-family core/calibration recovery from
+practical numerical observation recovery. CoreFieldRecovery removes supplied
+core metadata; the older FullFieldRecovery.EOnly marker definitions remain a
+separate route with unproved identification hypotheses.
 """
 
 from __future__ import annotations
@@ -30,7 +31,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'notes' / 'verification'
 MODULES = ['AxialFromAngular', 'ProfileReverseTrace', 'FullFieldRecovery',
-           'SourceFieldRecovery', 'ObservedFieldRecovery', 'RecoveryAxiomAudit']
+           'SourceFieldRecovery', 'ObservedFieldRecovery', 'CoreFieldRecovery', 'RecoveryAxiomAudit']
 ALLOWED_AXIOMS = {'propext', 'Classical.choice', 'Quot.sound'}
 
 
@@ -85,11 +86,11 @@ def main() -> int:
         'toolchain': (ROOT / 'lean-toolchain').read_text().strip(),
         'lake_manifest_sha256': digest(ROOT / 'lake-manifest.json'),
         'proof_files_sha256': {f'notes/{name}.lean': digest(ROOT / 'notes' / f'{name}.lean') for name in MODULES},
-        # Legacy flag: the original FullFieldRecovery.EOnly reader, including
-        # automatic core identification, still has unproved matching hypotheses.
         'calibration_identification_formally_proved': False,
         'calibration_identification_from_E_alone_formally_proved': False,
         'calibration_identification_with_retained_core_formally_proved': False,
+        'core_identification_from_assembled_E_formally_proved': False,
+        'legacy_EOnly_marker_identification_formally_proved': False,
         'actual_observed_E_dataset_recovered': False,
         'steps': [],
     }
@@ -119,8 +120,8 @@ def main() -> int:
             ])
         audit_text = (OUTPUT / 'RecoveryAxiomAudit.log').read_text()
         blocks = re.findall(r'depends on axioms:\s*\[([^\]]*)\]', audit_text)
-        if len(blocks) != 23:
-            raise RuntimeError(f'Expected twenty-three axiom reports; found {len(blocks)}. Inspect the saved audit.')
+        if len(blocks) != 39:
+            raise RuntimeError(f'Expected thirty-nine axiom reports; found {len(blocks)}. Inspect the saved audit.')
         used = {part.strip() for block in blocks for part in block.split(',') if part.strip()}
         report['audited_theorems'] = len(blocks)
         report['axioms_used'] = sorted(used)
@@ -133,9 +134,13 @@ def main() -> int:
         report['compiled_modules'] = MODULES
         report['legacy_readers_require_supplied_calibration'] = True
         report['assembled_reader_requires_supplied_calibration'] = False
-        report['assembled_reader_requires_retained_core'] = True
+        report['assembled_reader_requires_retained_core'] = False
         report['calibration_identification_with_retained_core_formally_proved'] = True
-        report['calibration_identification_scope'] = 'Complete exact assembled E with retained core metadata; height and scale read from the eta=1 tail. FullFieldRecovery.EOnly automatic core identification remains unproved.'
+        report['calibration_identification_formally_proved'] = True
+        report['calibration_identification_from_E_alone_formally_proved'] = True
+        report['core_identification_from_assembled_E_formally_proved'] = True
+        report['calibration_identification_scope'] = 'CoreFieldRecovery: complete exact assembled E in the NominalProfile source family. Observable endpoint, rate, patch, scale, ramp, P, m, wait markers recover the core; the boundary tail supplies h and completes calibration. No supplied core or calibration. Legacy FullFieldRecovery.EOnly markers remain unproved.'
+        report['finite_noisy_observation_recovery_proved'] = False
         report['source_profile_identified'] = 'PreparedOutgoing.prepared.profile'
         report['assembled_outgoing_prefix_completion_proved'] = True
         report['matching_source_instance_recovery_proved'] = True

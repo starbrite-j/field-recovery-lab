@@ -1,0 +1,88 @@
+Exit code: 1
+notes/CoreFieldRecovery.lean:27:4: error: Type mismatch: After simplification, term
+  LT.lt.le F.data.core.lam_pos
+ has type
+  0 ≤ F.data.core.lam
+but is expected to have type
+  |AngularMomentReset.relative (F.reset.coefficients eta) u| ≤ F.data.core.lam
+notes/CoreFieldRecovery.lean:79:6: error: linarith failed to find a contradiction
+F : OutgoingProfile.Profile
+y : ℝ
+hy : F.data.core.endpoint < y
+hf : ¬F.data.flattenEnd ≤ y
+hno : y ∉ Ioo (F.data.releaseStart - 4) F.data.releaseStart
+hs : 0 < OutgoingSchedule.sigma ((y - F.data.core.endpoint) / OutgoingTail.flattenLength)
+he : Real.exp (OutgoingSchedule.sigma ((y - F.data.core.endpoint) / OutgoingTail.flattenLength) * -Real.log 2) < 1
+hA : 0 < OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam y
+a✝ :
+  2 * (OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam y * (1 / 2)) ≤
+    OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam y *
+      Real.exp (-(OutgoingSchedule.sigma ((y - F.data.core.endpoint) / OutgoingTail.flattenLength) * Real.log 2))
+⊢ False
+failed
+notes/CoreFieldRecovery.lean:128:4: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  HeatedOutgoing.E F W.controls.radius W.heat.coefficients (W.controls.radius * Real.exp y, eta)
+in the target expression
+  HeatedOutgoing.E F W.controls.radius W.heat.physical.coefficients (W.controls.radius * Real.exp y, eta) =
+    OutgoingSchedule.angular F.data.core.P F.data.core.dropLength F.data.core.lam (y, eta)
+
+F : OutgoingProfile.Profile
+W : NominalProfile.Witness F
+y eta : ℝ
+hlo : F.data.core.endpoint - 2 ≤ y
+hhi : y ≤ F.data.core.endpoint
+heta : eta ∈ HeatedOutgoing.parameterDomain
+hy : 0 < y
+hR : W.controls.radius ≤ W.controls.radius * Real.exp y
+hpatch :
+  OutgoingDilation.patchRadius F W.controls.radius * OutgoingDilation.compensationPatch.right ≤
+    W.controls.radius * Real.exp y
+hswitch : W.controls.radius * Real.exp y ≤ OutgoingDilation.switchRadius F W.controls.radius
+⊢ HeatedOutgoing.E F W.controls.radius W.heat.physical.coefficients (W.controls.radius * Real.exp y, eta) =
+    OutgoingSchedule.angular F.data.core.P F.data.core.dropLength F.data.core.lam (y, eta)
+notes/CoreFieldRecovery.lean:178:2: error: 'change' tactic failed, pattern
+  OutgoingDilation.E F W.controls.radius (X, 0) * ?m.383 < ?m.385
+is not definitionally equal to target
+  OutgoingDilation.E F W.controls.radius (X, 0) *
+        HeatTailEdit.multiplier F.data.h (ParametricHeatTail.diffusion 0)
+          (OutgoingDilation.switchRadius F W.controls.radius) X +
+      OutgoingDilation.shapedPatchAmplitude F 0 *
+        TerminalCompensation.correction OutgoingDilation.compensationPatch (W.heat.physical.coefficients 0)
+          (X / OutgoingDilation.patchRadius F W.controls.radius) <
+    2 *
+      (OutgoingDilation.E F W.controls.radius (X, 1) +
+        OutgoingDilation.shapedPatchAmplitude F 1 *
+          TerminalCompensation.correction OutgoingDilation.compensationPatch (W.heat.physical.coefficients 1)
+            (X / OutgoingDilation.patchRadius F W.controls.radius))
+notes/CoreFieldRecovery.lean:175:4: warning: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [HeatedOutgoing.E, HeatedOutgoing.heatE, HeatedOutgoing.patchIncrement, mul_zero, add_zero, hmul1,
+    mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+notes/CoreFieldRecovery.lean:175:8: warning: This simp argument is unused:
+  mul_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [HeatedOutgoing.E, HeatedOutgoing.heatE, HeatedOutgoing.patchIncrement, hc, add_zero, hmul1,
+    mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+notes/CoreFieldRecovery.lean:175:18: warning: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [HeatedOutgoing.E, HeatedOutgoing.heatE, HeatedOutgoing.patchIncrement, hc, mul_zero, hmul1,
+    mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+notes/CoreFieldRecovery.lean:188:67: error: unsolved goals
+F : OutgoingProfile.Profile
+W : NominalProfile.Witness F
+R : ℝ := W.controls.radius * Real.exp F.data.core.endpoint
+⊢ OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam F.data.core.endpoint =
+    2 *
+      (OutgoingSchedule.radialAmplitude F.data.core.P F.data.core.dropLength F.data.core.lam F.data.core.endpoint *
+        (1 / 2))
