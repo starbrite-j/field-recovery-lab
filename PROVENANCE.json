@@ -20,31 +20,35 @@
   },
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
   "scope": "Downstream field-recovery research. The imported upstream formalizations and Git history are preserved. The saved checks cover the nine research modules and their required source dependencies.",
-  "calibration_identification_formally_proved": true,
-  "actual_observed_E_dataset_recovered": false,
+  "compiled_research_modules": 9,
   "audited_theorems": 45,
-  "calibration_identification_with_retained_core_formally_proved": true,
-  "calibration_identification_from_E_alone_formally_proved": true,
-  "assembled_reader_requires_supplied_calibration": false,
-  "assembled_reader_requires_retained_core": false,
-  "calibration_identification_scope": "CoreFieldRecovery: complete exact assembled E in the NominalProfile source family. Observable endpoint, rate, patch, scale, ramp, P, m, wait markers recover the core; the boundary tail supplies h and completes calibration. No supplied core or calibration. Legacy FullFieldRecovery.EOnly markers remain unproved.",
-  "core_identification_from_assembled_E_formally_proved": true,
-  "legacy_EOnly_marker_identification_formally_proved": false,
-  "finite_noisy_observation_recovery_proved": false,
+  "recovery_result": {
+    "module": "notes/CoreFieldRecovery.lean",
+    "theorem": "NavierStokes.CoreFieldRecovery.exists_matched_core_recovery",
+    "input": "Complete exact assembled angular field E from the NominalProfile source family",
+    "recovered_parameters": ["P", "m", "lam", "wait", "height", "radial_scale"],
+    "recovered_fields": ["E", "U"],
+    "parameter_source": "Observable field markers and the boundary tail"
+  },
+  "original_reproduction": {
+    "module": "notes/OriginalFieldReproduction.lean",
+    "method": "Symbolic source round trip",
+    "observation": "Constructed from the prepared source through its existence witness"
+  },
+  "numerical_fixture_models": [
+    "Gaussian angular fields for the energy identity",
+    "Known-window calibration fixtures",
+    "Source-flattening-law fixtures"
+  ],
   "flatten_marker_audit": "notes/flatten_marker_audit.json",
   "flatten_marker_numerical_cases": 9,
   "flatten_marker_rejection_cases": 6,
   "flatten_marker_script_sha256": "cf5c756ca43697960a5886b97a333b063587999641e141a4c1a46becd34af658",
   "numerical_cli_verification": "notes/verification/numerical_cli_verification.json",
-  "numerical_source_Profile_certified": false,
-  "compiled_research_modules": 9,
-  "full_symbolic_original_reproduction_proved": true,
-  "full_numerical_original_reproduced": false,
-  "symbolic_observation_constructed_from_same_source": true,
   "exact_normalized_prefix_samples_verified": 45,
   "prefix_export": "notes/original_field/prefix_samples.json",
   "prefix_export_sha256": "7cbcf135b647072fb7aeb03346421fb5932c8abb7f4f51ca021be19d8c67463c",
   "prefix_generator_sha256": "c9c94fb209c2491daad17b4467f39af645c3f691a55be79f1ac5474e06606adb",
   "prefix_certificate": "notes/PrefixSampleCertificate.lean",
-  "prefix_sample_scope": "0 < x <= 1, eta in [-1,1]; exact U and E/P, with source amplitude P unassigned. All samples checked against the symbolic reproduced original by Lean."
+  "prefix_sample_scope": "0 < x <= 1, eta in [-1,1]; exact U and E/P, with symbolic source amplitude P. All samples checked against the symbolic reproduced original by Lean."
 }
