@@ -19,7 +19,7 @@
     "notes/RecoveryAxiomAudit.lean": "6cfee32a695e4f5ed6842f9700bb1f5f16db938fb0cf9fa2f9f681822b271a18"
   },
   "lake_manifest_sha256": "5ec1dc8e009008d0efb9601cd38f6ba54e753fd538b0e5f8c3e6c5ec72ee1e09",
-  "scope": "Private downstream recovery research; the imported upstream formalizations are preserved with their history. The saved checks cover the research modules and required dependencies, not an independent audit of every upstream result.",
+  "scope": "Downstream field-recovery research. The imported upstream formalizations and Git history are preserved. The saved checks cover the nine research modules and their required source dependencies.",
   "calibration_identification_formally_proved": true,
   "actual_observed_E_dataset_recovered": false,
   "audited_theorems": 45,
